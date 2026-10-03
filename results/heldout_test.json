@@ -1,0 +1,9 @@
+{
+  "note": "Held-out test set: 56 patients (about 12 LGG), scored once after the models were fixed. Transcribed from the console output of `--eval-test` runs (seed 0, trained on all 5 CV folds' patients).",
+  "unit": "patient level (mean slice probability per patient)",
+  "models": {
+    "cnn_alone":            {"acc": 0.893, "balanced_acc": 0.841, "auc": 0.907, "slice_acc": 0.874, "slice_balanced_acc": 0.831, "slice_auc": 0.900},
+    "cnn_to_quantum_q6_L3": {"acc": 0.875, "balanced_acc": 0.860, "auc": 0.953, "slice_acc": 0.887, "slice_balanced_acc": 0.860, "slice_auc": 0.934},
+    "cnn_to_classical_q6":  {"acc": 0.857, "balanced_acc": 0.758, "auc": 0.907, "slice_acc": 0.856, "slice_balanced_acc": 0.781, "slice_auc": 0.891}
+  }
+}

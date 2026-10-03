@@ -1,0 +1,14 @@
+.venv/
+__pycache__/
+*.pyc
+# data and derived data (BraTS is not redistributed here)
+BraTS2020/
+BraTS2020_*/
+data_64/
+*.npz
+*.nii
+*.nii.gz
+# scratch
+results_test/
+res_test/
+.ipynb_checkpoints/

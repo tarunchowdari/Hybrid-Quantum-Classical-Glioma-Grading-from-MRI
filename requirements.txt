@@ -1,0 +1,12 @@
+# Versions are not pinned: run `pip freeze > requirements.lock` in your own environment to record the exact ones you used.
+numpy
+scipy
+scikit-learn
+pandas
+matplotlib
+tqdm
+nibabel
+# PyTorch: install the build matching your CUDA version from https://pytorch.org/get-started/locally/
+torch
+# Optional, only for `python quantum_hybrid.py --check` (simulator cross-check)
+pennylane
