@@ -1,20 +1,3 @@
-"""Classical baselines for HGG-vs-LGG on the preprocessed BraTS 2020 crops.
-
-Models
-  pca_lr : flatten -> PCA(k) -> standardise -> class-balanced logistic regression
-           (the classical reference for the quantum models' compressed input)
-  cnn    : small 3-block CNN on the 4-channel 64x64 crops (class-weighted BCE, flip/rotate augmentation)
-
-Evaluation
-  Patient-level k-fold cross-validation (folds are assigned in preprocess_brats.py). The held-out test
-  patients are only scored if you pass --eval-test, which should be done once, at the very end.
-  Metrics are reported per slice and per patient (mean predicted probability over a patient's slices);
-  the patient-level numbers are the ones that matter.
-
-Usage
-  python baselines.py --model pca_lr --pca 64
-  python baselines.py --model cnn --epochs 30 --seeds 3
-"""
 import argparse
 
 import numpy as np

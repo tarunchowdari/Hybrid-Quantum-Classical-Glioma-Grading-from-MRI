@@ -1,30 +1,4 @@
-"""Hybrid quantum-classical HGG-vs-LGG classifier, with the quantum circuit simulated directly in PyTorch.
 
-Pipeline
-  image (4 x 64 x 64)
-    -> ENCODER -> vector of 2^n numbers (n = number of qubits)
-         pca : fixed PCA fitted on the training fold only (the setup described in the reference paper)
-         cnn : small learnable CNN followed by a linear layer
-    -> L2-normalise -> used as the amplitudes of an n-qubit state                (amplitude encoding)
-    -> L layers of [Ry(theta) on every qubit, then a ring of CZ gates]           (trainable circuit)
-    -> read out <Z_i> on every qubit (n numbers in [-1, 1])
-    -> small classical head -> logit for HGG
-
-Why a hand-written simulator: Ry and CZ only ever produce real amplitudes, so the whole circuit is real
-tensor algebra. It runs batched on the GPU and trains with ordinary autograd. `--check` compares it with a
-brute-force dense-matrix simulation and, if installed, with PennyLane.
-
-Ablation (--core)
-  quantum   : the circuit above
-  classical : a Linear(2^n -> n) + tanh layer instead of the circuit (same input, same readout size)
-  none      : encoder output goes straight into the head
-
-Usage
-  python quantum_hybrid.py --encoder pca --core quantum --qubits 6 --layers 3
-  python quantum_hybrid.py --encoder cnn --core quantum --qubits 6 --layers 3 --seeds 3
-  python quantum_hybrid.py --encoder cnn --core classical --qubits 6
-  python quantum_hybrid.py --check
-"""
 import argparse
 
 import numpy as np

@@ -1,25 +1,4 @@
-"""Preprocess the BraTS 2020 training data for HGG-vs-LGG slice classification.
 
-Per patient:
-  1. Find the four modalities (T1, T1ce, T2, FLAIR) and the segmentation mask.
-  2. Z-score each modality over the non-zero (brain) voxels of the volume.
-  3. Keep the axial slices with the most tumour (at most --max-slices, each with >= --min-area tumour pixels).
-  4. Crop a square box around the tumour in each slice and resize it to --size x --size.
-Then assign every PATIENT to the held-out test set or to one of --folds cross-validation folds, stratified
-by grade, so slices from one patient never end up on both sides of a split.
-
-Output (in --out):
-  slices.npz    X (N, 4, S, S) float16, y (N,) with 1 = HGG and 0 = LGG, patient (N,), z (N,), fold (N,)
-                fold: -1 = held-out test patient, 0..K-1 = cross-validation fold
-  patients.csv  patient id, grade, number of slices, fold
-  preview.png   a few example crops, as a sanity check
-
-Usage
-  python preprocess_brats.py --root /path/to/BraTS2020 --out data_64
-
---root is the folder that contains BraTS2020_TrainingData. Grades are read from the name_mapping.csv
-that ships with the training data. The crops use the ground-truth tumour mask.
-"""
 import argparse
 import csv
 import os

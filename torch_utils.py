@@ -1,7 +1,3 @@
-"""Shared PyTorch pieces: the small CNN backbone, augmentation and one training loop.
-
-Kept separate from `common.py` so that the scikit-learn baseline runs without PyTorch installed.
-"""
 import numpy as np
 import torch
 import torch.nn as nn

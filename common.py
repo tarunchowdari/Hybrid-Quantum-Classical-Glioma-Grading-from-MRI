@@ -1,10 +1,4 @@
-"""Shared, torch-free utilities: loading the preprocessed slices, patient-level metrics and the
-cross-validation driver used by `baselines.py` and `quantum_hybrid.py`.
 
-A "model" here is any function with the signature
-
-    fit_predict(X_train, y_train, X_val, seed) -> (probabilities_on_X_val, n_trainable_params_or_None)
-"""
 import json
 import time
 from pathlib import Path
